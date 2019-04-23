@@ -1,0 +1,21 @@
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#file
+#RewriteRule ^(.*)$ $1.php /Removing .php extension
+RewriteRule ^view/(.*)$ view-file.php?f=$1 [NC,L]
+RewriteRule ^download/(.*)$ download-file.php?f=$1 [NC,L]
+
+
+
+RewriteRule ^music/([a-zA-Z0-9-_]+)/([a-zA-Z-_]+)/(\d+)/?$ music/view.php?id=$3 [NC,L]
+RewriteRule ^music/([a-zA-Z0-9-_]+)/([a-zA-Z-_]+)/(\d+)/download?$ music/download.php?id=$3 [NC,L]
+
+
+
+#error page
+ErrorDocument 404 /views/404.php
+</IfModule>
